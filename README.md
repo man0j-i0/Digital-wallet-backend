@@ -1,4 +1,4 @@
-# 💸 Affinsys Digital Wallet Backend
+# 💸 Digital Wallet Backend
 
 A secure and modular **digital wallet backend** built with **Node.js**, **Express**, and **SQLite**. It supports user registration, wallet operations (fund/pay), transaction history, real-time currency conversion, and product catalog functionality.
 
