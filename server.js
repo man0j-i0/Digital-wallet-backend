@@ -1,7 +1,4 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const basicAuth = require("basic-auth");
-const db = require('./models/db');
 const authRoutes = require("./routes/authRoutes");
 const walletRoutes = require("./routes/walletRoutes");
 const productRoutes = require('./routes/productRoutes');
@@ -14,7 +11,10 @@ app.use("/api", authRoutes);
 app.use("/api", walletRoutes);
 app.use("/api", productRoutes);
 
-const PORT = 3000;
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
+  );
+}
+module.exports = app;
