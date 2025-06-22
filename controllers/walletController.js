@@ -16,7 +16,7 @@ exports.fundWallet = (req, res) => {
 
   const transaction = db.transaction(() => {
     updateBalance.run(amount, user.id);
-    insertTx.run(null, user.id, amount); // sender_id = null means "system"
+    insertTx.run(null, user.id, amount); 
   });
 
   transaction();
