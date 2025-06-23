@@ -1,6 +1,6 @@
 const db = require('../models/db');
 
-exports.fundWallet = (req, res) => {
+function fundWallet(req, res){
   const user = req.user;
   const { amount } = req.body;
 
@@ -26,7 +26,7 @@ exports.fundWallet = (req, res) => {
   res.json({ message: 'Wallet funded successfully', balance: updated.balance });
 };
 
-exports.sendMoney = (req, res) => {
+function sendMoney (req, res){
   const sender = req.user;
   const { to, amount } = req.body;
 
@@ -68,7 +68,7 @@ exports.sendMoney = (req, res) => {
   res.json({ message: 'Payment successful', balance: updatedSender.balance });
 };
 
-exports.getStatement = (req, res) => {
+function getStatement(req, res){
   const db = require('../models/db');
   const user = req.user;
 
@@ -96,3 +96,4 @@ exports.getStatement = (req, res) => {
 
   res.json(transactions);
 };
+exports.module = {fundWallet, sendMoney, getStatement}

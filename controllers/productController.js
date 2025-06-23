@@ -1,6 +1,6 @@
 const db = require('../models/db');
 
-exports.addProduct = (req, res) => {
+function addProduct(req, res){
   const { name, price, description } = req.body;
 
   if (!name || !price || price <= 0) {
@@ -24,7 +24,7 @@ exports.addProduct = (req, res) => {
   }
 };
 
-exports.getProducts = (req,res) =>{
+function getProducts(req,res){
     try{
         const products = db.prepare('SELECT * FROM products').all();
         res.json(products);
@@ -33,7 +33,8 @@ exports.getProducts = (req,res) =>{
         res.status(500).json({ error: "Failed to load products" });
     }
 };
-exports.buyProduct = (req, res) => {
+
+function buyProduct(req, res){
   const user = req.user;
   const { product_id } = req.body;
 
@@ -76,3 +77,4 @@ exports.buyProduct = (req, res) => {
     res.status(500).json({ error: "Could not complete purchase" });
   }
 };
+module.exports = { addProduct, getProducts, buyProduct };
